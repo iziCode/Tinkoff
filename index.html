@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="main.css"/>
+    <title>Testing Tinkoff pay</title>
+</head>
+<body>
+<h1 align="center">Тест</h1>
+
+<div class="card">
+    <h2>Метод Init:</h2>
+    <form id="form-order" class="form" method="POST" action="" name="TinkoffPayForm"
+          onsubmit="pay(this); return false;">
+
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+        <div id="mainContent">
+            <div id="header">
+                <h1><img src="logo.svg"></h1>
+                <h3>Корзина</h3>
+            </div>
+            <div id="basket">
+                <table>
+                    <tr>
+                        <th>Товар</th>
+                        <th>Описание</th>
+                        <th>Цена</th>
+                        <th>Количество</th>
+                        <th>Цена итого</th>
+                        <th></th>
+                    </tr>
+                    <tr class="main_product_class">
+                        <td class="product_name">Куртка Columbia</td>
+                        <td class="product_description">
+                            Оптимальный вариант для городских прогулок и путешествий в прохладную погоду - мужской
+                            пуховик от Columbia.
+                        </td>
+                        <td class="product_price">&#8381;<input name="price" class="price" value="7.99" disabled/></td>
+                        <td class="product_quantity">
+                            <i class="fa fa-minus" title="Decrease Qty"></i>
+                            <input class="qty" value="3" name="qty" maxlength="2" disabled/>
+                            <i class="fa fa-plus" title="Increase Qty"></i>
+                        </td>
+                        <td style="width: 100px;" class="product_amount_cost">&#8381;<input name="cost" class="cost"
+                                                                                            value="23.97" disabled/>
+                        </td>
+                    </tr>
+                    <tr class="main_product_class">
+                        <td class="product_name">Куртка Outventure</td>
+                        <td class="product_description">
+                            Удобная и продуманная модель для долгих зимних прогулок - пуховик от Outventure.
+                        </td>
+                        <td class="product_price">&#8381;<input name="price" class="price" value="29.99" disabled/></td>
+                        <td class="product_quantity">
+                            <i class="fa fa-minus" title="Decrease Qty"></i>
+                            <input class="qty" value="1" name="qty" maxlength="2" disabled/>
+                            <i class="fa fa-plus" title="Increase Qty"></i>
+                        </td>
+                        <td class="product_amount_cost">&#8381;<input name="cost" class="cost" value="29.99" disabled/>
+                        </td>
+                    </tr>
+                    <tr class="main_product_class">
+                        <td class="product_name">Куртка Merrell</td>
+                        <td class="product_description">
+                            Утепленная куртка Merrell - отличный выбор для походов и активного отдыха на природе.
+                        </td>
+                        <td class="product_price">&#8381;<input name="price" class="price" value="50.00" disabled/></td>
+                        <td class="product_quantity">
+                            <i class="fa fa-minus" title="Decrease Qty"></i>
+                            <input class="qty" value="1" name="qty" maxlength="2" disabled/>
+                            <i class="fa fa-plus" title="Increase Qty"></i>
+                        </td>
+                        <td class="product_amount_cost">&#8381;<input name="cost" class="cost" value="50.00" disabled/>
+                        </td>
+                    </tr>
+                </table>
+                <div class="div-down">
+                    <div class="left">
+                        <h1>К оплате</h1>
+                        <p>*включая налоги</p>
+                    </div>
+                    <div class="right">
+                        &#8381;<input name="amount" id="total" value="103.96" required disabled/>
+                    </div>
+                </div>
+                <div class="div-down">
+                    <div class="left">
+                        <h2>Введите почту:</h2>
+                        <input id="email" type="email" class="form-control" name="email" placeholder="Ваш e-mail"
+                               tabindex="2" value="unikovskiy@ya.ru" required>
+                        <!--<input id="order-phone" type="text" placeholder="Ваш телефон" name="phone"-->
+                        <!--class="form-control" tabindex="3" value="+89177777777">-->
+
+                    </div>
+                </div>
+
+                <button id="button" type="submit" href="javascript: void(0);"
+                        class="btn">
+                    <a href=""><h1>Оплатить</h1><i class="fa fa-shopping-cart"></i></a>
+                </button>
+            </div>
+            <div class="hide">
+                <p>Спасибо что обратились к нам! </p>
+            </div>
+        </div>
+
+        <input type="hidden" name="terminalkey" value="1537806222766DEMO">
+        <input type="hidden" name="frame" value="false">
+        <input type="hidden" name="language" value="ru">
+        <input class="tinkoffPayRow" type="hidden" value="Покупка курток по скидочной карте gold"
+               name="description">
+        <input id="tinkoff_receipt" type="hidden" name="receipt"
+               value='{"Email": "","Phone": "","Taxation": "usn_income","Items": [{"Name": "Куртка Columbia", "Price": 799, "Quantity": 3, "Amount": 2397, "Tax": "none"},{"Name": "Куртка Outventure", "Price": 2999, "Quantity": 1, "Amount": 2999, "Tax": "none"},{"Name": "Куртка Merrell", "Price": 5000, "Quantity": 1, "Amount": 5000, "Tax": "none"}]}'>
+
+    </form>
+</div>
+
+</body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="main.js"></script>
+
+<script>
+    $('.color option:eq(1)').prop('selected', true).css('backgroundColor', 'black');
+
+    $('a').children('i').hover(function () {
+        $('table').css('transform', 'scale(0.8)').css('transition', 'all 1s');
+        $('.div-down').css('transform', 'scale(0.8)').css('transition', 'all 1s');
+        $('#mainContent').css('backgroundColor', 'rgba(211,211,211,0.6)');
+        $('.hide').slideDown('slow');
+    }, function () {
+        $('table').css('transform', '');
+        $('.div-down').css('transform', '');
+        $('#mainContent').css('backgroundColor', '');
+        $('.hide').slideUp('slow');
+    });
+
+    $('.fa-minus').click(function () {
+        var val_input = $(this).closest('tr').find('.qty');
+        if (val_input.val() <= 0) {
+            return;
+        }
+        val_input.val(parseInt(val_input.val() - 1));
+
+        var price = $(this).closest('tr').find('.price');
+        var cost = $(this).closest('tr').find('.cost');
+        cost.val((parseFloat(price.val()) * val_input.val()).toFixed(2));
+
+        total_cost();
+    });
+
+    $('.fa-plus').click(function () {
+        var val_input = $(this).closest('tr').find('.qty');
+        //alert(val_input.val());
+        if (val_input.val() >= 20) {
+            return;
+        }
+        val_input.val(parseInt(val_input.val()) + 1);
+
+        var price = $(this).closest('tr').find('.price');
+        var cost = $(this).closest('tr').find('.cost');
+        cost.val((parseFloat(price.val()) * val_input.val()).toFixed(2));
+
+        total_cost();
+    });
+
+    $('.fa-trash-o').click(function () {
+        $(this).closest('tr').remove();
+
+        total_cost();
+    });
+
+</script>
+</html>
